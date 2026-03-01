@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Portfolio</title>
+    <!-- Importing a nice font from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- CSS RESET & VARIABLES --- */
+        :root {
+            --primary-color: #ff6b6b;
+            --dark-color: #2d3436;
+            --light-color: #f9f9f9;
+            --text-color: #636e72;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: var(--dark-color);
+        }
+
+        /* --- NAVIGATION BAR --- */
+        header {
+            background-color: var(--dark-color);
+            padding: 1rem 5%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: 400;
+            transition: color 0.3s ease;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        /* --- SECTIONS GENERAL --- */
+        section {
+            padding: 4rem 5%;
+            min-height: 100vh; /* Full viewport height */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            color: var(--dark-color);
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        /* Little underline for headings */
+        h2::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 4px;
+            background: var(--primary-color);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        p {
+            max-width: 600px;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        /* --- HOME SECTION --- */
+        #home {
+    background-color: #2d3436; /* Change to any color you want */
+    text-align: center;
+    color: #fff;
+}
+
+        #home h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        #home h1 span {
+    color: var(--primary-color);
+}
+
+        #home p {
+            color: #ddd;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            background-color: var(--primary-color);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: transform 0.3s, background 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #ff4757;
+            transform: translateY(-3px);
+        }
+
+        /* --- ABOUT SECTION --- */
+        #about {
+            background-color: #fff;
+        }
+
+        /* --- GALLERY SECTION --- */
+        #gallery {
+            background-color: #f1f2f6;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        .gallery-item {
+            height: 200px;
+            background-color: #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        /* Simulating images with colors */
+        .g1 { background: linear-gradient(45deg, #ff9ff3, #feca57); }
+        .g2 { background: linear-gradient(45deg, #54a0ff, #5f27cd); }
+        .g3 { background: linear-gradient(45deg, #00d2d3, #01a3a4); }
+        .g4 { background: linear-gradient(45deg, #ff6b6b, #ee5253); }
+        .g5 { background: linear-gradient(45deg, #01a3a4, #00d2d3); }
+        .g6 { background: linear-gradient(45deg, #ff9ff3, #feca57); }
+
+        .gallery-item:hover {
+            transform: scale(1.03);
+            transition: transform 0.3s;
+        }
+
+        /* --- CONTACT SECTION --- */
+        #contact {
+            background-color: var(--white-color);
+            color: #0f0606;
+        }
+
+        #contact h2 {
+            color: #1e2324;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .contact-form input, 
+        .contact-form textarea {
+            margin-bottom: 1rem;
+            padding: 15px;
+            border: none;
+            border-radius: 5px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .contact-form button {
+            cursor: pointer;
+            border: none;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: background 0.3s;
+        }
+
+        .contact-form button:hover {
+            background-color: #ff4757;
+        }
+        .social-icons {
+    margin-top: 20px;
+}
+
+.social-icons a {
+    font-size: 2rem;
+    color: #fff;
+    margin: 0 15px;
+    transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: var(--primary-color);
+}
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: #1e2324;
+            color: #888;
+            text-align: center;
+            padding: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        /* --- RESPONSIVE DESIGN --- */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding: 1rem;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+                padding: 0;
+            }
+
+            nav ul li {
+                margin: 0 10px;
+            }
+
+            #home h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER & NAV -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- HOME SECTION -->
+    <section id="home">
+        <h1>Hello, Im 
+        <span>Gian Carlo Tesico</span>
+        </h1>
+        <h3> And I am from Grade 11 Stewardship from CMDI</h3>
+        <p>Welcome to my first ever porfolio</p>
+        <a href="#about" class="btn">Learn More</a>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about">
+        <h2>About Me</h2>
+        <p>Hello, Im Gian Carlo Tesico, 16 years old and from Grade 11 Stewardship, I am one of the student on sir James and im currently taking up TVL-ICT at CMDI. 
+        </p>
+    </section>
+
+    <!-- GALLERY SECTION -->
+    <section id="gallery">
+        <h2>My Gallery</h2>
+        <p>Here are some of my recent works.</p>
+        <div class="gallery-grid">
+            <div class="gallery-item g1">
+             <img src="C:\Users\Huawei MateBook 14\OneDrive\Pictures\Roblox\baf6119f-07f0-4f9a-b166-695d34ada883.jpg" alt="baf6119f-07f0-4f9a-b166-695d34ada883" style="width: 100%; height: 100%; object-fit: cover;"> 
+            </div>
+            <div class="gallery-item g2">
+              <img src="C:\Users\Huawei MateBook 14\OneDrive\Pictures\Roblox\9b49fae1-c83c-4846-8e8b-bd9b5455a607.jpg" alt="9b49fae1-c83c-4846-8e8b-bd9b5455a607" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <div class="gallery-item g3">
+              <img src="C:\Users\Huawei MateBook 14\OneDrive\Pictures\Roblox\baf6119f-07f0-4f9a-b166-695d34ada883.jpg" alt="baf6119f-07f0-4f9a-b166-695d34ada883" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <div class="gallery-item g4">
+              <img src="C:\Users\Huawei MateBook 14\OneDrive\Pictures\Roblox\eb52dfc6-4d1c-4376-a52d-14ca3f64ff8f.jpg" alt="eb52dfc6-4d1c-4376-a52d-14ca3f64ff8f" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <div class="gallery-item g5">
+              <img src="C:\Users\Huawei MateBook 14\OneDrive\Pictures\Roblox\a99b74ea-8d96-4097-b487-5352b809c2ca.jpg" alt="a99b74ea-8d96-4097-b487-5352b809c2ca" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <div class="gallery-item g6">
+              <img src="C:\Users\Huawei MateBook 14\OneDrive\Pictures\Roblox\0c73d6c9-39ab-418e-bd7b-7eafb27c63b5.jpg" alt="0c73d6c9-39ab-418e-bd7b-7eafb27c63b5" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+        </div>
+        <br>
+        <br>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact">
+        <h2>Touch Me</h2>
+        <p>Want to know more about me? Send me a message down below!</p>
+        <form class="contact-form">
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea rows="5" placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+    <div class="social-icons">
+    <a href="https://www.facebook.com/giancarlo.tesico.2024/" target="_blank">
+        <img src="C:\Users\Huawei MateBook 14\OneDrive\Pictures\Roblox\facebook-logo_1080029-107.avif" alt="Facebook" width="40" height="40">
+    </a>
+    <a href="https://www.instagram.com/giannatural2/" target="_blank">
+        <img src="C:\Users\Huawei MateBook 14\OneDrive\Pictures\Roblox\Instagram_icon.png" alt="Instagram" width="40" height="40">
+    </a>
+    <a href="mailto:giancarlonatural@cmdi.edu.ph" target="_blank">
+        <img src="C:\Users\Huawei MateBook 14\OneDrive\Pictures\Roblox\download.png" alt="Gmail" width="40" height="40">
+    </a>
+</div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2025-2026 Gians Porfolio. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
